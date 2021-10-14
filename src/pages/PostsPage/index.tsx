@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import CreatePost from '../../components/CreatePost';
 import Post from '../../components/Post';
@@ -29,7 +28,7 @@ const PostsPage: React.FC<IPostsPageProps> = ({ navigation }) => {
   return (
     <MainLayout>
       { 
-        posts.length 
+        posts.length && !postsLoading
           ? posts.map(post => <Post navigation={navigation} {...post} key={post.id} />)
           : postsLoading
             ? <UI.LoadingText>Loading posts...</UI.LoadingText>

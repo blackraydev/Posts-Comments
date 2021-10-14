@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
-import { View, Text } from 'react-native';
+import React from 'react'
+import { Text } from 'react-native';
 import { useSelector } from 'react-redux';
+import Comments from '../../components/Comments';
 import Post from '../../components/Post';
-import { useActions } from '../../hooks/useActions';
 import MainLayout from '../../layouts/MainLayout';
-import { postsSelector } from '../../store/Posts/selectors';
+import { IPost } from '../../models/IPost';
+import { postsLoadingSelector, postsSelector } from '../../store/Posts/selectors';
+import * as UI from './styles';
 
 interface IPostPageProps {
   route: any,
@@ -14,11 +16,17 @@ interface IPostPageProps {
 const PostPage: React.FC<IPostPageProps> = ({ route, navigation }) => {
   const { post } = route.params;
   const posts = useSelector(postsSelector);
+  const postLoading = useSelector(postsLoadingSelector);
   const targetPost = posts.find(tempPost => tempPost.id === post.id);
 
   return (
     <MainLayout>
-      { targetPost && <Post {...targetPost} navigation={navigation} isDetailViewMode /> }
+      { 
+        !postLoading && targetPost 
+          ? <Post {...targetPost} navigation={navigation} isDetailViewMode />
+          : <UI.LoadingText>Saving changes...</UI.LoadingText>
+      }
+      <Comments postId={targetPost?.id || post.id}/>
     </MainLayout>
   )
 }

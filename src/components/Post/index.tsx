@@ -9,10 +9,7 @@ import CustomButton from '../../UI/CustomButton';
 import CustomInput from '../../UI/CustomInput';
 import * as UI from './styles';
 
-interface IPostProps {
-  id: number;
-  title: string;
-  body: string;
+interface IPostProps extends IPost {
   navigation: any;
   isDetailViewMode?: boolean;
 }
