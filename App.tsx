@@ -1,21 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import COLORS from './src/constants/colors';
+import PostPage from './src/pages/PostPage';
+import PostsPage from './src/pages/PostsPage';
+import store from './src/store';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Posts">
+          <Stack.Screen
+            name="Posts"
+            component={PostsPage}
+            options={{ 
+              headerStyle: { backgroundColor: COLORS.MAIN },
+              headerTintColor: COLORS.TEXT_MAIN,
+              headerTitleStyle: { fontWeight: "bold" }
+            }}
+          />
+          <Stack.Screen
+            name="Post Detail View"
+            component={PostPage}
+            options={{ 
+              headerStyle: { backgroundColor: COLORS.MAIN },
+              headerTintColor: COLORS.TEXT_MAIN,
+              headerTitleStyle: { fontWeight: "bold" }
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
