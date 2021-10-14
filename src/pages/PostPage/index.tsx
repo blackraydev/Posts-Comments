@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 import Post from '../../components/Post';
+import { useActions } from '../../hooks/useActions';
 import MainLayout from '../../layouts/MainLayout';
 import { postsSelector } from '../../store/Posts/selectors';
 

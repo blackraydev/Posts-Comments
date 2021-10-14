@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import { useSelector } from 'react-redux';
 import COLORS from '../../constants/colors';
@@ -17,7 +17,7 @@ const CreatePost: React.FC = () => {
 
   const createPostHandler = () => {
     const newPost = {
-      id: posts[0]?.id + 1 | 0,
+      id: posts[posts.length - 1]?.id + 1 | 0,
       title,
       body
     };

@@ -6,3 +6,9 @@ export const Text = styled.Text`
   fontSize: 18px;
   marginBottom: 25px;
 `;
+
+export const LoadingText = styled.Text`
+  color: ${COLORS.TEXT_MAIN};
+  fontSize: 20px;
+  fontWeight: 500;
+`;
