@@ -18,7 +18,7 @@ const Comment: React.FC<ICommentProps> = ({
   postId,
   text
 }) => {
-  const { deleteComment } = useActions();
+  const { deleteComment, editComment } = useActions();
 
   const [editMode, setEditMode] = useState<boolean>(false);
   const [newComment, setNewComment] = useState<string>(text);
@@ -28,10 +28,18 @@ const Comment: React.FC<ICommentProps> = ({
   }
 
   const deleteCommentHandler = () => {
+    alert(id)
     deleteComment(id);
   }
 
   const saveCommentHandler = () => {
+    const edittedComment = {
+      id,
+      postId,
+      text: newComment
+    };
+    
+    editComment(edittedComment);
     setEditMode(false);
   }
 

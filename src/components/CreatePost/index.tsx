@@ -17,7 +17,7 @@ const CreatePost: React.FC = () => {
 
   const createPostHandler = () => {
     const newPost = {
-      id: posts[posts.length - 1]?.id + 1 | 0,
+      id: posts[posts.length - 1]?.id + 2 | 0,
       title,
       body
     };

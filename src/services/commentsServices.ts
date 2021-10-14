@@ -29,4 +29,10 @@ export default class CommentsServices {
       .then(data => data)
       .catch(e => console.log(e));
   };
+
+  static async deleteSeveralComments(postId: number) {
+    return await axiosInstance.delete(`/${postId}`)
+      .then(data => data)
+      .catch(e => console.log(e));
+  }
 }

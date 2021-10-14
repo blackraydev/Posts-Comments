@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components/native';
 import COLORS from '../../constants/colors';
 
 export const Post = styled.View`
+  flex: 1;
   backgroundColor: ${COLORS.SECONDARY};
   padding: 15px;
   borderRadius: 15px;

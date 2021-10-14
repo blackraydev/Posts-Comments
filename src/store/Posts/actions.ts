@@ -78,12 +78,17 @@ export const deletePost = (postId: number) => async (dispatch: Dispatch) => {
     const response = await PostsServices.deletePost(postId);
     const data = response?.data;
 
+    dispatch({ type: ACTIONS.DELETE_SEVERAL_COMMENTS, payload: postId });
     dispatch({ type: ACTIONS.DELETE_POST, payload: postId });
+    
     dispatch(receiveData());
   }
   catch (e) {
     console.log(e);
+
+    dispatch({ type: ACTIONS.DELETE_SEVERAL_COMMENTS, payload: postId });
     dispatch({ type: ACTIONS.DELETE_POST, payload: postId });
+
     dispatch(rejectData());
   }
 };

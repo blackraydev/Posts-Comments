@@ -35,7 +35,7 @@ const Post: React.FC<IPostProps> = ({
 
   useEffect(() => {
     const post = { id, title, body };
-    setTargetPost(posts.find(tempPost => tempPost.id === id) || post);
+    setTargetPost(posts.find(tempPost => tempPost && tempPost.id === id) || post);
   }, [posts]);
 
   useEffect(() => {

@@ -12,13 +12,14 @@ interface IPostsPageProps {
 }
 
 const PostsPage: React.FC<IPostsPageProps> = ({ navigation }) => {
-  const { getAllPosts } = useActions();
+  const { getAllPosts, getAllComments } = useActions();
   const posts = useSelector(postsSelector);
   const postsLoading = useSelector(postsLoadingSelector);
   const hasError = useSelector(postsErrorSelector);
 
   useEffect(() => {
     getAllPosts();
+    getAllComments();
   }, []);
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const PostsPage: React.FC<IPostsPageProps> = ({ navigation }) => {
     <MainLayout>
       { 
         posts.length && !postsLoading
-          ? posts.map(post => <Post navigation={navigation} {...post} key={post.id} />)
+          ? posts.map((post, index) => <Post {...post} navigation={navigation} key={index} />)
           : postsLoading
             ? <UI.LoadingText>Loading posts...</UI.LoadingText>
             : <UI.Text>There are no posts yet...</UI.Text>

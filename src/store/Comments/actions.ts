@@ -33,6 +33,7 @@ export const createComment = (comment: IComment) => async (dispatch: Dispatch) =
   }
   catch (e) {
     console.log(e);
+    console.log(comment);
     dispatch({ type: ACTIONS.CREATE_COMMENT, payload: comment });
     dispatch(rejectData());
   }
@@ -72,9 +73,28 @@ export const deleteComment = (commentId: number) => async (dispatch: Dispatch) =
   }
 };
 
+export const deleteSeveralComments = (postId: number) => async (dispatch: Dispatch) => {
+  try {
+    dispatch(requestData());
+
+    const response = await CommentsServices.deleteSeveralComments(postId);
+    const data = response?.data;
+
+    dispatch({ type: ACTIONS.DELETE_SEVERAL_COMMENTS, payload: postId });
+    dispatch(receiveData());
+  }
+  catch (e) {
+    console.log(e);
+    dispatch({ type: ACTIONS.DELETE_SEVERAL_COMMENTS, payload: postId });
+    dispatch(rejectData());
+  }
+};
+
+
 export default {
   getAllComments,
   createComment,
   editComment,
-  deleteComment
+  deleteComment,
+  deleteSeveralComments
 };

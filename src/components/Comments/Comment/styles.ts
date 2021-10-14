@@ -5,6 +5,7 @@ export const Comment = styled.View`
   borderRadius: 15px;
   padding: 15px;
   backgroundColor: ${COLORS.SECONDARY};
+  marginBottom: 15px;
 `;
 
 export const Text = styled.Text`

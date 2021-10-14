@@ -16,7 +16,8 @@ const initialState: ICommentsState = {
 
 type Action = 
   GAction<ACTIONS.CREATE_COMMENT | ACTIONS.EDIT_COMMENT, IComment> |
-  GAction<ACTIONS.DELETE_COMMENT, number> |
+  GAction<ACTIONS.DELETE_COMMENT | ACTIONS.DELETE_SEVERAL_COMMENTS, number> |
+  GAction<ACTIONS.GET_ALL_COMMENTS, IComment[]> |
   GAction<ACTIONS.REQUEST_DATA | ACTIONS.RECEIVE_DATA | ACTIONS.REJECT_DATA>;
 
 export default (
@@ -30,14 +31,21 @@ export default (
       return { ...state, isLoading: false, hasError: false };
     case ACTIONS.REJECT_DATA:
       return { ...state, isLoading: false, hasError: true };
+    case ACTIONS.GET_ALL_COMMENTS:
+      return { ...state, comments: action.payload };
     case ACTIONS.CREATE_COMMENT:
       return { ...state, comments: [...state.comments, action.payload] };
     case ACTIONS.EDIT_COMMENT:
       const edittedComments = [...state.comments].map(comment => comment.id === action.payload.id ? action.payload : comment);
       return { ...state, comments: edittedComments };
-    case ACTIONS.DELETE_COMMENT:
+    case ACTIONS.DELETE_COMMENT: {
       const filteredComments = [...state.comments].filter(comment => comment.id !== action.payload);
       return { ...state, comments: filteredComments };
+    }
+    case ACTIONS.DELETE_SEVERAL_COMMENTS: {
+      const filteredComments = [...state.comments].filter(comment => comment.postId !== action.payload);
+      return { ...state, comments: filteredComments };
+    }
     default: return state;
   };
 };

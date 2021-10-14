@@ -7,10 +7,12 @@ interface IMainLayoutProps {
 
 const MainLayout: React.FC<IMainLayoutProps> = ({ children }) => {
   return (
-    <UI.Layout>
-      {children}
-    </UI.Layout>
-  )
-}
+    <UI.Wrapper>
+      <UI.Layout>
+        {children}
+      </UI.Layout>
+    </UI.Wrapper>
+  );
+};
 
 export default MainLayout;

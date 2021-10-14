@@ -12,3 +12,9 @@ export const Text = styled.Text`
   marginTop: 25px;
   marginBottom: 15px;
 `;
+
+export const LoadingText = styled.Text`
+  color: ${COLORS.TEXT_MAIN};
+  fontSize: 20px;
+  fontWeight: 500;
+`;
