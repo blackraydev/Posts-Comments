@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Do homework",
+      "body": "Maths, Physics, Computer Science"
+    },
+    {
+      "id": 2,
+      "title": "Implement mobile app",
+      "body": "Create posts page and then create post page with comments section"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "postId": 1,
+      "text": "Do your homework faster!"
+    },
+    {
+      "id": 2,
+      "postId": 2,
+      "text": "Wow, cool application!"
+    },
+    {
+      "id": 3,
+      "postId": 2,
+      "text": "It's just a test task"
+    }
+  ]
+}
