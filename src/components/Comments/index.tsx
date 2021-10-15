@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { useActions } from '../../hooks/useActions';
 import { IComment } from '../../models/IComment';
 import { commentsLoadingSelector, commentsSelector } from '../../store/Comments/selectors';
 import Comment from './Comment';
@@ -19,6 +18,9 @@ const Comments: React.FC<ICommentsProps> = ({ postId }) => {
     if (comments && comments.length > 0) {
       const filteredComments = comments.filter(comment => comment && comment.postId === postId);
       setTargetComments(filteredComments);
+    }
+    else {
+      setTargetComments([]);
     }
   }, [comments]);
   
