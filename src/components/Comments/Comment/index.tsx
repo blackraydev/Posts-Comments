@@ -28,7 +28,6 @@ const Comment: React.FC<ICommentProps> = ({
   }
 
   const deleteCommentHandler = () => {
-    alert(id)
     deleteComment(id);
   }
 
